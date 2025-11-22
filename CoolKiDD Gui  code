@@ -1,1 +1,168 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.co..."))()
+
+
+]]
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local mouse = player:GetMouse()
+
+local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+screenGui.Name = "c00lguiV2"
+screenGui.ResetOnSpawn = false
+
+local frame = Instance.new("Frame", screenGui)
+frame.Size = UDim2.new(0.35, 0, 0.7, 0)
+frame.Position = UDim2.new(0.325, 0, 0.15, 0)
+frame.BackgroundColor3 = Color3.new(0, 0, 0)
+frame.BorderColor3 = Color3.new(1, 0, 0)
+frame.BorderSizePixel = 4
+frame.Active = true
+frame.Draggable = true
+frame.Visible = false
+
+local title = Instance.new("TextLabel", frame)
+title.Size = UDim2.new(1, 0, 0.1, 0)
+title.Text = "c00lgui v2"
+title.Font = Enum.Font.SourceSansBold
+title.TextScaled = true
+title.BackgroundTransparency = 1
+title.TextColor3 = Color3.new(1, 0, 0)
+
+local usernameBox = Instance.new("TextBox", frame)
+usernameBox.Size = UDim2.new(0.8, 0, 0.08, 0)
+usernameBox.Position = UDim2.new(0.1, 0, 0.12, 0)
+usernameBox.PlaceholderText = "Enter username..."
+usernameBox.TextScaled = true
+usernameBox.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+usernameBox.TextColor3 = Color3.new(1, 1, 1)
+
+local banBtn = Instance.new("TextButton", frame)
+banBtn.Size = UDim2.new(0.8, 0, 0.08, 0)
+banBtn.Position = UDim2.new(0.1, 0, 0.22, 0)
+banBtn.Text = "Fake Ban (Anyone)"
+banBtn.Font = Enum.Font.SourceSansBold
+banBtn.TextScaled = true
+banBtn.BackgroundColor3 = Color3.new(1, 0, 0)
+banBtn.TextColor3 = Color3.new(0, 0, 0)
+
+banBtn.MouseButton1Click:Connect(function()
+    local inputName = usernameBox.Text:lower()
+    for _, target in pairs(Players:GetPlayers()) do
+        if target.Name:lower() == inputName then
+            target:Kick("You have been BANNED BY C00LKIDD")
+            break
+        end
+    end
+end)
+
+local music = Instance.new("Sound", workspace)
+music.SoundId = "rbxassetid://138081566"
+music.Volume = 1
+
+local musicBtn = Instance.new("TextButton", frame)
+musicBtn.Size = UDim2.new(0.8, 0, 0.08, 0)
+musicBtn.Position = UDim2.new(0.1, 0, 0.32, 0)
+musicBtn.Text = "Play Music"
+musicBtn.Font = Enum.Font.SourceSansBold
+musicBtn.TextScaled = true
+musicBtn.BackgroundColor3 = Color3.new(1, 0, 0)
+musicBtn.TextColor3 = Color3.new(0, 0, 0)
+
+musicBtn.MouseButton1Click:Connect(function()
+    if not music.IsPlaying then
+        music:Play()
+    end
+end)
+
+local msgBtn = Instance.new("TextButton", frame)
+msgBtn.Size = UDim2.new(0.8, 0, 0.08, 0)
+msgBtn.Position = UDim2.new(0.1, 0, 0.42, 0)
+msgBtn.Text = "Message"
+msgBtn.Font = Enum.Font.SourceSansBold
+msgBtn.TextScaled = true
+msgBtn.BackgroundColor3 = Color3.new(1, 0, 0)
+msgBtn.TextColor3 = Color3.new(0, 0, 0)
+
+msgBtn.MouseButton1Click:Connect(function()
+    local banner = Instance.new("TextLabel", screenGui)
+    banner.Size = UDim2.new(1, 0, 0.08, 0)
+    banner.Position = UDim2.new(0, 0, 0, 0)
+    banner.BackgroundColor3 = Color3.new(1, 0, 0)
+    banner.TextColor3 = Color3.new(1, 1, 1)
+    banner.Font = Enum.Font.SourceSansBold
+    banner.TextScaled = true
+    banner.Text = "TEAM C00LKIDD HACKED"
+    task.delay(5, function() banner:Destroy() end)
+end)
+
+local tpBtn = Instance.new("TextButton", frame)
+tpBtn.Size = UDim2.new(0.8, 0, 0.08, 0)
+tpBtn.Position = UDim2.new(0.1, 0, 0.52, 0)
+tpBtn.Text = "TP Tool"
+tpBtn.Font = Enum.Font.SourceSansBold
+tpBtn.TextScaled = true
+tpBtn.BackgroundColor3 = Color3.new(1, 0, 0)
+tpBtn.TextColor3 = Color3.new(0, 0, 0)
+
+tpBtn.MouseButton1Click:Connect(function()
+    local tpTool = Instance.new("Tool")
+    tpTool.Name = "TeleportTool"
+    tpTool.RequiresHandle = false
+    tpTool.Activated:Connect(function()
+        local pos = mouse.Hit.p
+        if player.Character then
+            player.Character:MoveTo(pos)
+        end
+    end)
+    tpTool.Parent = player:WaitForChild("Backpack")
+end)
+
+local flingBtn = Instance.new("TextButton", frame)
+flingBtn.Size = UDim2.new(0.8, 0, 0.08, 0)
+flingBtn.Position = UDim2.new(0.1, 0, 0.62, 0)
+flingBtn.Text = "Fling + Banish (You)"
+flingBtn.Font = Enum.Font.SourceSansBold
+flingBtn.TextScaled = true
+flingBtn.BackgroundColor3 = Color3.new(1, 0, 0)
+flingBtn.TextColor3 = Color3.new(0, 0, 0)
+
+flingBtn.MouseButton1Click:Connect(function()
+    if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+        player.Character.HumanoidRootPart.Velocity = Vector3.new(0, 200, 0)
+        local msg = Instance.new("TextLabel", screenGui)
+        msg.Size = UDim2.new(1, 0, 0.08, 0)
+        msg.Position = UDim2.new(0, 0, 0, 0)
+        msg.BackgroundColor3 = Color3.new(1, 0, 0)
+        msg.TextColor3 = Color3.new(1, 1, 1)
+        msg.Font = Enum.Font.SourceSansBold
+        msg.TextScaled = true
+        msg.Text = "BANISHED BY C00LKIDD"
+        task.delay(3, function() msg:Destroy() end)
+    end
+end)
+
+local closeBtn = Instance.new("TextButton", frame)
+closeBtn.Size = UDim2.new(0.2, 0, 0.06, 0)
+closeBtn.Position = UDim2.new(0.75, 0, 0.9, 0)
+closeBtn.Text = "Close"
+closeBtn.Font = Enum.Font.SourceSansBold
+closeBtn.TextScaled = true
+closeBtn.BackgroundColor3 = Color3.new(1, 0, 0)
+closeBtn.TextColor3 = Color3.new(0, 0, 0)
+
+closeBtn.MouseButton1Click:Connect(function()
+    frame.Visible = false
+end)
+
+local openBtn = Instance.new("TextButton", screenGui)
+openBtn.Size = UDim2.new(0.2, 0, 0.05, 0)
+openBtn.Position = UDim2.new(0.4, 0, 0.9, 0)
+openBtn.Text = "Open Menu"
+openBtn.Font = Enum.Font.SourceSansBold
+openBtn.TextScaled = true
+openBtn.BackgroundColor3 = Color3.new(1, 0, 0)
+openBtn.TextColor3 = Color3.new(0, 0, 0)
+
+openBtn.MouseButton1Click:Connect(function()
+    frame.Visible = true
+end)
+
